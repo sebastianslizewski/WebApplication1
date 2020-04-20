@@ -2,16 +2,5 @@
 <h1>@Model.CurrentCategory</h1>
 @foreach (var card in Model.Cards)
 {
-<div class="col-sm-4 col-lg-4 col-md-4">
-    <div class="thumbnail">
-        <img src="@card.CardImgThumbnailUrl" alt="">
-        <div class="caption">
-            <h3 class="pull-right">@card.CardPrice.ToString("c")</h3>
-            <h3>
-                <a asp-controller="Card" asp-action="Details" asp-route-id="@card.CardId">@card.CardName</a>
-            </h3>
-            <p>@card.CardShortDescription</p>
-        </div>
-    </div>
-</div>
+<partial name="_CardPartialView" model="card"/>
 }
