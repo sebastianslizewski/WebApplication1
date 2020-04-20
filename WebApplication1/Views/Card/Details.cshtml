@@ -1,16 +1,17 @@
 ﻿@model Card
-<div class="container">
+<div class="container-fluid">
     <h2>@Model.CardName</h2>
-
-    <div class="thumbnail">
-        <img alt="@Model.CardName" src="@Model.CardImgUrl">
-        <div class="caption-full">
-            <h3 class="pull-right">@Model.CardPrice.ToString("c")</h3>
-            <h3>
-                <a href="#">@Model.CardName</a>
-            </h3>
-            <h4>@Model.CardShortDescription</h4>
-            <p>@Model.CardLongDescription</p>
+    <div class="container-fluid">
+        <div class="portrait">
+            <img alt="@Model.CardName" src="@Model.CardImgUrl">
+            <div class="caption-full">
+                <h2 class="pull-right">@Model.CardPrice.ToString("c")</h2>
+                <h2>
+                    <a href="#">@Model.CardName</a>
+                </h2>
+                <h4>@Model.CardShortDescription</h4>
+                <p>@Model.CardLongDescription</p>
+            </div>
         </div>
     </div>
 </div>
