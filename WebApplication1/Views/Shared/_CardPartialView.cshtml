@@ -11,14 +11,22 @@
                             <h3>
                                 <a asp-controller="Card" asp-action="Details" asp-route-id="@Model.CardId">@Model.CardName</a>
                             </h3>
+                            <p>@Model.CardShortDescription</p>
                         </div>
                         <div class="col-8 col-sm-6">
                             @Model.CardPrice.ToString("c")
                         </div>
+                        <div class="addToCart">
+                            <p class="button">
+                                <a class="btn btn-primary"
+                                   asp-controller="ShoppingCart"
+                                   asp-action="AddToShoppingCart"
+                                   asp-route-cardId="@Model.CardId">Add to cart</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <p>@Model.CardShortDescription</p>
         </div>
     </div>
 </div>

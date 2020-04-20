@@ -15,6 +15,7 @@ namespace Wymiana_Kart_TCG.Models
         }
         public DbSet<Card> Cards { get; set; }
         public DbSet<CardCategory> CardCategories { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

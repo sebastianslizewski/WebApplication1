@@ -23,7 +23,13 @@ namespace Wymiana_Kart_TCG
         {
             services.AddDbContext<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICardRepository, CardRepository>();
+
             services.AddScoped<ICardCategoryRepository, CardCategoryRepository>();
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
+
             services.AddControllersWithViews();
             services.AddMvc();
         }
@@ -38,8 +44,10 @@ namespace Wymiana_Kart_TCG
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
+
             app.UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
