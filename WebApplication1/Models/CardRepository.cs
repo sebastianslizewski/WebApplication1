@@ -21,7 +21,7 @@ namespace Wymiana_Kart_TCG.Models
             get { return _appDbContext.Cards.Include(c => c.CardCategory); }
         }
 
-        public IEnumerable<Card> CardOfTheWeek
+        public IEnumerable<Card> CardDealOfTheWeek
         {
             get { return _appDbContext.Cards.Include(c => c.CardCategory).Where(p => p.IsCardDealOfTheWeek); }
         }

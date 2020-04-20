@@ -1,14 +1,26 @@
 ﻿@model Card
 
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="@Model.CardImgThumbnailUrl" alt="">
-            <div class="caption">
-                <h3 class="pull-right">@Model.CardPrice.ToString("c")</h3>
-                <h3>
-                    <a asp-controller="Card" asp-action="Details" asp-route-id="@Model.CardId">@Model.CardName</a>
-                </h3>
-                <p>@Model.CardShortDescription</p>
+<div class="container">
+    <div class="col-8 col-sm-6">
+        <div class="row">
+            <div class="thumbnail">
+                <img src="@Model.CardImgThumbnailUrl" alt="">
+                <div class="col align-self-start">
+                    <div class="row">
+                        <div class="col-4 col-sm-6">
+                            <h3>
+                                <a asp-controller="Card" asp-action="Details" asp-route-id="@Model.CardId">@Model.CardName</a>
+                            </h3>
+                        </div>
+                        <div class="col-8 col-sm-6">
+                            @Model.CardPrice.ToString("c")
+                        </div>
+                    </div>
+                </div>
             </div>
+            <p>@Model.CardShortDescription</p>
         </div>
     </div>
+</div>
+
+

@@ -18,7 +18,7 @@ namespace Wymiana_Kart_TCG.Models
 
         };
 
-        public IEnumerable<Card> CardOfTheWeek { get; }
+        public IEnumerable<Card> CardDealOfTheWeek { get; }
         public Card GetCardById(int cardId)
         {
             return AllCards.FirstOrDefault(p => p.CardId == cardId);

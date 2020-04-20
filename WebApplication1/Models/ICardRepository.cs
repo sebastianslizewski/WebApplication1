@@ -8,7 +8,7 @@ namespace Wymiana_Kart_TCG.Models
     public interface ICardRepository
     {
         IEnumerable<Card> AllCards { get; }
-        IEnumerable<Card> CardOfTheWeek { get; }
+        IEnumerable<Card> CardDealOfTheWeek { get; }
         Card GetCardById(int cardId);
     }
 }
