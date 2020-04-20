@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wymiana_Kart_TCG", "WebApplication1\Wymiana_Kart_TCG.csproj", "{5EAA33EC-37C0-4E44-95D1-EBD3961E7E92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EAA33EC-37C0-4E44-95D1-EBD3961E7E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EAA33EC-37C0-4E44-95D1-EBD3961E7E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EAA33EC-37C0-4E44-95D1-EBD3961E7E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EAA33EC-37C0-4E44-95D1-EBD3961E7E92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {475E6C8A-993F-4204-AB3D-CF87552DC77F}
+	EndGlobalSection
+EndGlobal
