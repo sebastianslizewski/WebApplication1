@@ -9,8 +9,8 @@ using Wymiana_Kart_TCG.Models;
 namespace Wymiana_Kart_TCG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200420160033_NotesOnCard")]
-    partial class NotesOnCard
+    [Migration("20200421084219_WorkingDropCategoriesDown")]
+    partial class WorkingDropCategoriesDown
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,6 +72,7 @@ namespace Wymiana_Kart_TCG.Migrations
                         {
                             CardId = 1,
                             CardImgThumbnailUrl = "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg",
+                            CardImgUrl = "https://imgix.ranker.com/user_node_img/36/700363/original/charizard-u21?w=650&q=50&fm=pjpg&fit=crop&crop=faces",
                             CardLongDescription = "Long description AlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazam",
                             CardName = "Alakazam",
                             CardPrice = 12,
@@ -84,6 +85,7 @@ namespace Wymiana_Kart_TCG.Migrations
                         {
                             CardId = 2,
                             CardImgThumbnailUrl = "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg",
+                            CardImgUrl = "https://imgix.ranker.com/user_node_img/36/700363/original/charizard-u21?w=650&q=50&fm=pjpg&fit=crop&crop=faces",
                             CardLongDescription = "Long description BlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoise",
                             CardName = "Blastoise",
                             CardPrice = 18,
@@ -96,6 +98,7 @@ namespace Wymiana_Kart_TCG.Migrations
                         {
                             CardId = 3,
                             CardImgThumbnailUrl = "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg",
+                            CardImgUrl = "https://imgix.ranker.com/user_node_img/36/700363/original/charizard-u21?w=650&q=50&fm=pjpg&fit=crop&crop=faces",
                             CardLongDescription = " Long description VenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaur",
                             CardName = "Venusaur",
                             CardPrice = 18,
@@ -126,18 +129,40 @@ namespace Wymiana_Kart_TCG.Migrations
                         new
                         {
                             CategoryId = 1,
-                            CardCategoryName = "Pokemon2"
+                            CardCategoryName = "Pokemon"
                         },
                         new
                         {
                             CategoryId = 2,
-                            CardCategoryName = "MTG2"
+                            CardCategoryName = "MTG"
                         },
                         new
                         {
                             CategoryId = 3,
-                            CardCategoryName = "Yugioh2"
+                            CardCategoryName = "Yugioh"
                         });
+                });
+
+            modelBuilder.Entity("Wymiana_Kart_TCG.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CardId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("CardId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Wymiana_Kart_TCG.Models.Card", b =>
@@ -145,6 +170,13 @@ namespace Wymiana_Kart_TCG.Migrations
                     b.HasOne("Wymiana_Kart_TCG.Models.CardCategory", "CardCategory")
                         .WithMany("Cards")
                         .HasForeignKey("CardCategoryCategoryId");
+                });
+
+            modelBuilder.Entity("Wymiana_Kart_TCG.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("Wymiana_Kart_TCG.Models.Card", "Card")
+                        .WithMany()
+                        .HasForeignKey("CardId");
                 });
 #pragma warning restore 612, 618
         }

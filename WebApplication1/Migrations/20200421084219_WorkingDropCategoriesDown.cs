@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Wymiana_Kart_TCG.Migrations
 {
-    public partial class NotesOnCard : Migration
+    public partial class WorkingDropCategoriesDown : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,14 +51,35 @@ namespace Wymiana_Kart_TCG.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ShoppingCartItems",
+                columns: table => new
+                {
+                    ShoppingCartItemId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CardId = table.Column<int>(nullable: true),
+                    Amount = table.Column<int>(nullable: false),
+                    ShoppingCartId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCartItems", x => x.ShoppingCartItemId);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCartItems_Cards_CardId",
+                        column: x => x.CardId,
+                        principalTable: "Cards",
+                        principalColumn: "CardId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "CardCategories",
                 columns: new[] { "CategoryId", "CardCategoryName", "CardDescription" },
                 values: new object[,]
                 {
-                    { 1, "Pokemon2", null },
-                    { 2, "MTG2", null },
-                    { 3, "Yugioh2", null }
+                    { 1, "Pokemon", null },
+                    { 2, "MTG", null },
+                    { 3, "Yugioh", null }
                 });
 
             migrationBuilder.InsertData(
@@ -66,19 +87,27 @@ namespace Wymiana_Kart_TCG.Migrations
                 columns: new[] { "CardId", "CardCategoryCategoryId", "CardImgThumbnailUrl", "CardImgUrl", "CardLongDescription", "CardName", "CardOtherDescription", "CardPrice", "CardShortDescription", "CategoryId", "IsCardAvailableToTrade", "IsCardDealOfTheWeek", "Notes" },
                 values: new object[,]
                 {
-                    { 1, null, "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg", null, "Long description AlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazam", "Alakazam", null, 12, "Our famous Alakazam Cards!", 1, true, true, null },
-                    { 2, null, "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg", null, "Long description BlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoise", "Blastoise", null, 18, "Our famous Blastoise Cards!", 2, true, false, null },
-                    { 3, null, "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg", null, " Long description VenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaur", "Venusaur", null, 18, "Our famous Venusaur Cards!", 2, true, false, null }
+                    { 1, null, "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg", "https://imgix.ranker.com/user_node_img/36/700363/original/charizard-u21?w=650&q=50&fm=pjpg&fit=crop&crop=faces", "Long description AlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazamAlakazam", "Alakazam", null, 12, "Our famous Alakazam Cards!", 1, true, true, null },
+                    { 2, null, "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg", "https://imgix.ranker.com/user_node_img/36/700363/original/charizard-u21?w=650&q=50&fm=pjpg&fit=crop&crop=faces", "Long description BlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoiseBlastoise", "Blastoise", null, 18, "Our famous Blastoise Cards!", 2, true, false, null },
+                    { 3, null, "https://www.lootpots.com/wp-content/uploads/2019/12/pokemon-sword-shield-666x374.jpg", "https://imgix.ranker.com/user_node_img/36/700363/original/charizard-u21?w=650&q=50&fm=pjpg&fit=crop&crop=faces", " Long description VenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaurVenusaur", "Venusaur", null, 18, "Our famous Venusaur Cards!", 2, true, false, null }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cards_CardCategoryCategoryId",
                 table: "Cards",
                 column: "CardCategoryCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCartItems_CardId",
+                table: "ShoppingCartItems",
+                column: "CardId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ShoppingCartItems");
+
             migrationBuilder.DropTable(
                 name: "Cards");
 

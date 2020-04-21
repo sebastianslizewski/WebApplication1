@@ -22,9 +22,9 @@ namespace Wymiana_Kart_TCG.Models
             base.OnModelCreating(modelBuilder);
 
             //seed categories
-            modelBuilder.Entity<CardCategory>().HasData(new CardCategory { CategoryId = 1, CardCategoryName = "Pokemon2" });
-            modelBuilder.Entity<CardCategory>().HasData(new CardCategory { CategoryId = 2, CardCategoryName = "MTG2" });
-            modelBuilder.Entity<CardCategory>().HasData(new CardCategory { CategoryId = 3, CardCategoryName = "Yugioh2", });
+            modelBuilder.Entity<CardCategory>().HasData(new CardCategory { CategoryId = 1, CardCategoryName = "Pokemon" });
+            modelBuilder.Entity<CardCategory>().HasData(new CardCategory { CategoryId = 2, CardCategoryName = "MTG" });
+            modelBuilder.Entity<CardCategory>().HasData(new CardCategory { CategoryId = 3, CardCategoryName = "Yugioh", });
 
             //seed Cards
 

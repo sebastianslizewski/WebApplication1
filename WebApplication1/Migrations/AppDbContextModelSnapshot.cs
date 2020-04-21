@@ -127,17 +127,17 @@ namespace Wymiana_Kart_TCG.Migrations
                         new
                         {
                             CategoryId = 1,
-                            CardCategoryName = "Pokemon2"
+                            CardCategoryName = "Pokemon"
                         },
                         new
                         {
                             CategoryId = 2,
-                            CardCategoryName = "MTG2"
+                            CardCategoryName = "MTG"
                         },
                         new
                         {
                             CategoryId = 3,
-                            CardCategoryName = "Yugioh2"
+                            CardCategoryName = "Yugioh"
                         });
                 });
 

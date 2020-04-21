@@ -12,8 +12,8 @@ body {
 }
 
 .square {
-    height: 75px;
-    width: 75px;
+    height: 30px;
+    width: 30px;
 }
 
 .slide-image {
@@ -41,7 +41,7 @@ img {
 }
 
 img {
-    background: red;
+    background: whitesmoke;
 }
 
 .caption {

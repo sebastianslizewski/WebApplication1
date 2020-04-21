@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CardCategory>
+
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Card Categories
+        </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+        @foreach (var cardCategory in Model)
+        {
+           
+                <a class="dropdown-item" asp-controller="Card" asp-action="List"
+                   asp-route-category="@cardCategory.CardCategoryName">@cardCategory.CardCategoryName</a>
+            
+        }
+        <li class="divider"></li>
+         <a class="dropdown-item" asp-controller="Card" asp-action="List" asp-route-Category="">View all cards</a>
+    </ul>
+</div>
