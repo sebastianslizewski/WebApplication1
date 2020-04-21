@@ -39,7 +39,7 @@ namespace Wymiana_Kart_TCG.Models
         {
             var shoppingCartItem =
                     _appDbContext.ShoppingCartItems.SingleOrDefault(
-                        s => s.Card.CardId == card.CardId && s.ShoppingCartId == ShoppingCartId);
+                        c => c.Card.CardId == card.CardId && c.ShoppingCartId == ShoppingCartId);
 
             if (shoppingCartItem == null)
             {
@@ -87,9 +87,11 @@ namespace Wymiana_Kart_TCG.Models
 
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ??= _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                .Include(s => s.Card)
-                .ToList();
+            return ShoppingCartItems ??
+                   (ShoppingCartItems =
+                       _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
+                           .Include(s => s.Card)
+                           .ToList());
         }
 
         public void ClearCart()

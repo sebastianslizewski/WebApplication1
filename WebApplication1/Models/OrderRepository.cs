@@ -40,6 +40,7 @@ namespace Wymiana_Kart_TCG.Models
 
                 _appDbContext.OrderDetails.Add(orderDetail);
             }
+
             _appDbContext.SaveChanges();
         }
     }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,8 +23,10 @@ namespace Wymiana_Kart_TCG
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ICardRepository, CardRepository>();
+            
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
 
+            services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddScoped<ICardCategoryRepository, CardCategoryRepository>();
@@ -33,7 +36,8 @@ namespace Wymiana_Kart_TCG
             services.AddSession();
 
             services.AddControllersWithViews();
-            services.AddMvc();
+            //services.AddMvc();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,10 +53,12 @@ namespace Wymiana_Kart_TCG
             app.UseSession();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
                 });
         }
     }

@@ -34,7 +34,7 @@ namespace Wymiana_Kart_TCG.Models
 
         [Required(ErrorMessage = "Please enter your zip code")]
         [Display(Name = "Zip code")]
-        [StringLength(10, MinimumLength = 4)]
+        [StringLength(10, MinimumLength = 5)]
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "Please enter your city")]

@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <style>
         /* Make the image fully responsive */
-      </style>
+    </style>
     <link href="~/Content/site.css" rel="stylesheet" />
 </head>
 <body>
@@ -27,7 +27,12 @@
                         <li class="nav-item"><a class="btn btn-success" class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                         @await Component.InvokeAsync("CategoryMenu")
                         <li class="nav-item"><a class="btn btn-success" class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a></li>
-                        @await Component.InvokeAsync("ShoppingCartSummary")
+                        @*@await Component.InvokeAsync("ShoppingCartSummary")*@
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <partial name="_LoginPartial" />
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -43,6 +48,7 @@
                 @RenderBody()
             </div>
         </div>
+        @RenderSection("Scripts", required: false)
     </div>
 </body>
 </html>
