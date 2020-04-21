@@ -54,6 +54,7 @@ namespace Wymiana_Kart_TCG
 
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
                 {

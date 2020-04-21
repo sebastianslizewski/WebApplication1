@@ -20,12 +20,10 @@ namespace Wymiana_Kart_TCG.Models
         {
             order.OrderPlaced = DateTime.Now;
 
-            _appDbContext.Orders.Add(order);
-
             var shoppingCartItems = _shoppingCart.ShoppingCartItems;
+            order.OrderTotal = _shoppingCart.GetShoppingCartTotal();
 
-            //order.OrderTotal = _shoppingCart.GetShoppingCartTotal();
-            //order.OrderDetails = new List<OrderDetail>();
+            order.OrderDetails = new List<OrderDetail>();
             //adding the order with its details
 
             foreach (var shoppingCartItem in shoppingCartItems)
@@ -34,12 +32,13 @@ namespace Wymiana_Kart_TCG.Models
                 {
                     Amount = shoppingCartItem.Amount,
                     CardId = shoppingCartItem.Card.CardId,
-                    OrderId = order.OrderId,
                     Price = shoppingCartItem.Card.CardPrice
                 };
 
-                _appDbContext.OrderDetails.Add(orderDetail);
+                order.OrderDetails.Add(orderDetail);
             }
+
+            _appDbContext.Orders.Add(order);
 
             _appDbContext.SaveChanges();
         }

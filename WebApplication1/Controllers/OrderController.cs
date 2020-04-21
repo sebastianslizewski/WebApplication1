@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wymiana_Kart_TCG.Models;
 
@@ -9,6 +10,7 @@ using Wymiana_Kart_TCG.Models;
 
 namespace Wymiana_Kart_TCG.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
