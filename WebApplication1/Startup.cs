@@ -24,6 +24,8 @@ namespace Wymiana_Kart_TCG
             services.AddDbContext<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICardRepository, CardRepository>();
 
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
             services.AddScoped<ICardCategoryRepository, CardCategoryRepository>();
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
 
