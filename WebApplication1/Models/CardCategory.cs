@@ -10,7 +10,7 @@ namespace Wymiana_Kart_TCG.Models
     public class CardCategory
     {
         [Key]
-        public int CategoryId { get; set; }
+        public int CardCategoryId { get; set; }
         public string CardCategoryName { get; set; }
         public string CardDescription { get; set; }
         public List<Card> Cards { get; set; }

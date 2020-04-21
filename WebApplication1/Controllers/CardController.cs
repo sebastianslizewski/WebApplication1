@@ -18,41 +18,46 @@ namespace Wymiana_Kart_TCG.Controllers
             _cardRepository = cardRepository;
             _cardCategoryRepository = iCardCategoryRepository;
         }
-        
 
+        //public IActionResult List()
+        //{
+        //    CardsListViewModel cardsListViewModel = new CardsListViewModel();
+        //    cardsListViewModel.Cards = _cardRepository.AllCards;
+
+        //    cardsListViewModel.CurrentCategory = "AllCards";
+        //    return View(cardsListViewModel);
+        //}
+        public IActionResult Details(int id)
+        {
+            var card = _cardRepository.GetCardById(id);
+            if (card == null)
+                return NotFound();
+
+            return View(card);
+        }
 
         public ViewResult List(string category)
         {
-            IEnumerable<Card> pies;
+            IEnumerable<Card> cards;
             string currentCategory;
 
             if (string.IsNullOrEmpty(category))
             {
-                pies = _cardRepository.AllCards.OrderBy(p => p.CardId);
+                cards = _cardRepository.AllCards.OrderBy(c => c.CardId);
                 currentCategory = "All cards";
             }
             else
             {
-                pies = _cardRepository.AllCards.Where(p => p.CardCategory.CardCategoryName == category)
-                    .OrderBy(p => p.CardId);
+                cards = _cardRepository.AllCards.Where(c => c.CardCategory.CardCategoryName == category)
+                    .OrderBy(c => c.CardId);
                 currentCategory = _cardCategoryRepository.AllCardCategories.FirstOrDefault(c => c.CardCategoryName == category)?.CardCategoryName;
             }
 
             return View(new CardsListViewModel
             {
-                Cards = pies,
+                Cards = cards,
                 CurrentCategory = currentCategory
             });
-        }
-
-
-        public IActionResult Details(int id)
-        {
-            var pie = _cardRepository.GetCardById(id);
-            if (pie == null)
-                return NotFound();
-
-            return View(pie);
         }
     }
 }

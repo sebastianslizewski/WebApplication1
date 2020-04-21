@@ -18,8 +18,8 @@ namespace Wymiana_Kart_TCG.Components
 
         public IViewComponentResult Invoke()
         {
-            var categories = _cardCategoryRepository.AllCardCategories.OrderBy(c => c.CardCategoryName);
-            return View(categories);
+            var cardCategories = _cardCategoryRepository.AllCardCategories.OrderBy(c => c.CardCategoryName);
+            return View(cardCategories);
         }
     }
 }

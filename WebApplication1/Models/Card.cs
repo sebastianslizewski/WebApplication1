@@ -19,7 +19,7 @@ namespace Wymiana_Kart_TCG.Models
         public string CardImgThumbnailUrl { get; set; }
         public bool IsCardDealOfTheWeek { get; set; }
         public bool IsCardAvailableToTrade { get; set; }
-        public int CategoryId { get; set; }
+        public int CardCategoryId { get; set; }
         public  CardCategory CardCategory { get; set; }
         public string Notes { get; set; }
 

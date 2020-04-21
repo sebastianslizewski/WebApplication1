@@ -87,11 +87,9 @@ namespace Wymiana_Kart_TCG.Models
 
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ??
-                   (ShoppingCartItems =
-                       _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
-                           .Include(s => s.Card)
-                           .ToList());
+            return ShoppingCartItems ??= _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
+                .Include(s => s.Card)
+                .ToList();
         }
 
         public void ClearCart()
